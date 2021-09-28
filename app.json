@@ -1,0 +1,49 @@
+{
+
+    "name": "Begram",
+
+    "logo": "https://telegra.ph//file/6c3f5503abcdb8ddf4fee.jpg",
+
+    "description": "Instagram bot downloader Telegram bot written in Javascript",
+
+    "keywords": [
+
+        "Bot",
+
+        "Instasave",
+
+        "telegram"
+
+    ],
+
+    "repository": "https://github.com/by3lish/begram",
+
+    "website": "https://byelish.gq",
+
+    "success_url": "https://t.me/begrambot",
+
+    "stack": "container",
+
+    "buildpacks": [
+
+        {
+
+            "url": "heroku/nodejs"
+
+        }
+
+    ],
+
+    "formation": {
+
+        "worker": {
+
+            "quantity": 1,
+
+            "size": "free"
+
+        }
+
+    }
+
+}
