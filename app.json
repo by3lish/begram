@@ -22,7 +22,7 @@
 
     "success_url": "https://t.me/begrambot",
 
-    "stack": "container",
+    "stack": "heroku-16",
 
     "buildpacks": [
 
