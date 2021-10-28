@@ -5,11 +5,11 @@ const bot = new Telegraf(Config.token);
 var path = require('path');
 const fs = require('fs-extra');
 var prefix = "/";
-var dir = './fayllar';
+var dir = './paylasimlar';
 
 if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, {recursive: true});
-    console.log("Fayllar qovlugu tapilmadi, qovlug yeniden yaradildi!")
+    console.log("[✓] ./paylasimlar qovluğu tapılmadı, qovluq yenidən yaradılır...")
 }
 
 bot.start((ctx) => ctx.reply("👋 Xoş Gördük!\nMən İnstagramdan video və şəkil yükləmək üçün hazırlanmış olan botam 📥\n İstifadə qaydasını görmək üçün /help yazın 🙏", Markup.inlineKeyboard(
@@ -23,21 +23,22 @@ bot.start((ctx) => ctx.reply("👋 Xoş Gördük!\nMən İnstagramdan video və 
 bot.help((ctx) => ctx.reply('📎 Siz Sadəcə Mənə Paylaşımın linkini atın, Mən paylaşımı yükləyib sizə atacağam...'));
 
 bot.on('text', (ctx) => {
+ctx.reply("<i>Paylaşım Yüklənilir 📥 Zəhmət olmasa Səbrli olun və gözləyin...</i>", {parse_mode: "html"})
 let link = ctx.message.text;
 if (link.startsWith("https://www.instagram.com/")){
-save(`${link}`, 'fayllar/').then(res => {
-if (path.extname(`fayllar/${res.file}`) === ".jpg"){
+save(`${link}`, 'paylasimlar/').then(res => {
+if (path.extname(`paylasimlar/${res.file}`) === ".jpg"){
     ctx.replyWithPhoto({ source: `${res.file}`} , {caption: '@begrambot 🇦🇿'});
-    fs.emptyDir('fayllar/', err => {
+    fs.emptyDir('paylasimlar/', err => {
         if (err) return console.error(err)
-        console.log("Qovluq Temizlendi")
+        console.log("[✓] Paylaşım Göndərildi, Qovluq Təmizləndi!")
     })
     };
-    if (path.extname(`fayllar/${res.file}`) === ".mp4"){
-        ctx.replyWithVideo({ source: `${res.file}`}, {caption: '@begram 🇦🇿' });
-        fs.emptyDir('fayllar/', err => {
+    if (path.extname(`paylasimlar/${res.file}`) === ".mp4"){
+        ctx.replyWithVideo({ source: `${res.file}`}, {caption: '@begrambot 🇦🇿' });
+        fs.emptyDir('paylasimlar/', err => {
             if (err) return console.error(err)
-            console.log("Qovluq Temizlendi")
+            console.log("[✓] Paylaşım Göndərildi, Qovluq Təmizləndi!")
             })
         };
 }
@@ -48,4 +49,5 @@ if (path.extname(`fayllar/${res.file}`) === ".jpg"){
 
 })
 
-bot.launch();                                     
+bot.launch();
+console.log("[✓] Bot istifadəyə Başladı. IG : by3lish")
